@@ -37,8 +37,8 @@ class TeleopToMotorNode(Node):
         v_left = linear_velocity - (self.wheel_base / 2.0) * angular_velocity
 
         # Convert wheel velocities to RPM
-        rpm_right = (v_right / (2 * 3.14159 * self.wheel_radius)) * 60.0
-        rpm_left = (v_left / (2 * 3.14159 * self.wheel_radius)) * 60.0
+        rpm_right = (v_right / (2 * 3.14159 * self.wheel_radius)) * 60.0 / 100.0
+        rpm_left = (v_left / (2 * 3.14159 * self.wheel_radius)) * 60.0 / 100.0
 
         # Send RPM values to motor controller via service
         self.send_motor_command(rpm_right, rpm_left)

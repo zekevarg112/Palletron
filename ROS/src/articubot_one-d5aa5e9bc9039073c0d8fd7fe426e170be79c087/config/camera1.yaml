@@ -1,0 +1,8 @@
+v4l2_camera_node:
+  ros__parameters:
+    video_device: "/dev/logitech_cam_1"
+    image_width: 1280
+    image_height: 720
+    framerate: 30
+#    camera_calibration_file: "package://articubot_one/config/camera_info/camera_1.yaml"
+

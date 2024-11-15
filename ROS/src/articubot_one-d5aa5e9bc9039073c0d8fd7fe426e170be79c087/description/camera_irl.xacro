@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <joint name="camera_joint_forks" type="fixed">
+        <parent link="velodyne"/>
+        <child link="camera_link_forks"/>
+        <origin xyz="0 0 0.1" rpy="0 0.45 ${pi}"/>
+    </joint>
+
+    <joint name="camera_joint_steering" type="fixed">
+        <parent link="velodyne"/>
+        <child link="camera_link_steering"/>
+        <origin xyz="0 0 0.1" rpy="0 0.18 0"/>
+    </joint>
+
+    <link name="camera_link_forks">
+        <visual>
+            <geometry>
+                <box size="0.010 0.03 0.03"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <visual>
+            <origin xyz="0 0 -0.05"/>
+            <geometry>
+                <cylinder radius="0.002" length="0.1"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <link name="camera_link_steering">
+        <visual>
+            <geometry>
+                <box size="0.010 0.03 0.03"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <visual>
+            <origin xyz="0 0 -0.05"/>
+            <geometry>
+                <cylinder radius="0.002" length="0.1"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+
+<!--     <joint name="camera_optical_joint_forks" type="fixed">
+        <parent link="camera_link_forks"/>
+        <child link="camera_link_optical_forks"/>
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    </joint>
+
+    <link name="camera_link_optical_forks"></link>
+
+    <joint name="camera_optical_joint_steering" type="fixed">
+        <parent link="camera_link_steering"/>
+        <child link="camera_link_optical_steering"/>
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    </joint>
+
+    <link name="camera_link_optical_steering"></link> -->
+
+</robot>

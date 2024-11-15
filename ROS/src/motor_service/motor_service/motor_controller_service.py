@@ -18,7 +18,7 @@ class MotorControllerNode(Node):
         self.declare_parameter('baud_rate', 115200)
         self.declare_parameter('handshake_response_byte', 0xA6)
         self.declare_parameter('timeout', 2.0)  # Timeout in seconds
-        self.declare_parameter('publish_rate', 10.0)  # Publish rate in Hz
+        self.declare_parameter('publish_rate', 40.0)  # Publish rate in Hz
         self.declare_parameter('right_motor_topic', 'right_motor_velocity')
         self.declare_parameter('left_motor_topic', 'left_motor_velocity')
         self.declare_parameter('encoder_angle_topic', 'encoder_angle')
@@ -131,8 +131,8 @@ class MotorControllerNode(Node):
  
         start_byte = 0xA5
         # command = 3  # VESC_COMMAND_SET_RPM
-        command = 5   #VESC_COMMAND_SET_RPM_PID
-        # command = 0  # VESC_COMMAND_SET_DUTY
+        command = 0
+        #command = 5  # VESC_COMMAND_SET_DUTY
 
         # Create command for right motor
         device_right = 1  # Right motor
@@ -222,9 +222,9 @@ class MotorControllerNode(Node):
             self.right_motor_pub.publish(Float32(data=self.right_motor_rpm))
             self.left_motor_pub.publish(Float32(data=self.left_motor_rpm))
             self.encoder_angle_pub.publish(Float32(data=self.encoder_angle))
-            # self.get_logger().info(f"Published Right Motor RPM: {self.right_motor_rpm:.2f}, "
-                                #    f"Left Motor RPM: {self.left_motor_rpm:.2f}, "
-                                #    f"Encoder Angle: {self.encoder_angle:.2f}")
+            #self.get_logger().info(f"Published Right Motor RPM: {self.right_motor_rpm:.2f}, "
+            #                        f"Left Motor RPM: {self.left_motor_rpm:.2f}, "
+            #                        f"Encoder Angle: {self.encoder_angle:.2f}")
             publish_rate.sleep()
         
 def main(args=None):

@@ -1,0 +1,4 @@
+physics:
+  max_step_size: 0.00001        # Set your desired step size
+  real_time_update_rate: 100000 # Should be 1 / max_step_size
+  real_time_factor: 1.0

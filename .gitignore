@@ -12,6 +12,8 @@
 ROS/devel/
 ROS/logs/
 ROS/build/
+ROS/install/
+ROS/log/
 ROS/bin/
 ROS/lib/
 ROS/msg_gen/

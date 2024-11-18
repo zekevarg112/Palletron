@@ -38,7 +38,7 @@ void vesc_status_function(void* param){
     while(1){
         send_vesc_rpm(&datalayer.Motor_R, RIGHT);
         send_vesc_rpm(&datalayer.Motor_L, LEFT);     
-        float angle = as5600.readAngle()*2.0*PI/4096 - 2.52;
+        float angle = as5600.readAngle()*2.0*PI/4096 - 1.76;
         send_encoder_angle(angle);
         // printf("Angle: %f\n", angle);
 
@@ -108,7 +108,7 @@ void loop(){
             break;
         }
     }
-    if(last_serial_msg + 50 < millis()){
+    if(last_serial_msg + 10 < millis()){
         pixel.fill(led_red);
         pixel.show();
     }

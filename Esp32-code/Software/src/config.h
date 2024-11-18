@@ -9,8 +9,8 @@
 //enable/disable debugging and error via Serial
 #define CAN_ERROR_DEBUG
 //#define CAN_DEBUG
-#define VESC_DEBUG
-#define SERIAL_PARSER_DEBUG
+//#define VESC_DEBUG
+//#define SERIAL_PARSER_DEBUG
 
 #define SDA_PIN 25
 #define SCL_PIN 33
@@ -20,7 +20,7 @@
 #define VESC_ID_LEFT 63
 
 
-#define VESC_STATUS_FREQUENCY 10 // Hz
+#define VESC_STATUS_FREQUENCY 40 // Hz
 #define VESC_COMMAND_FREQUENCY 40 // Hz
 
 #define VESC_MOTOR_POLES 20 // amount of poles for the motors (40 magnets = 20 poles?)

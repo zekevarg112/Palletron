@@ -4,5 +4,4 @@ source /opt/ros/humble/setup.bash
 # Source your workspace (if applicable)
 source ~/Palletron/ROS/install/setup.bash
 # Run the launch file
-ros2 launch motor_service lidar.launch.py
-ros2 launch motor_service raspberry_launch.py
+ros2 launch motor_service lidar.launch.py ## change!!

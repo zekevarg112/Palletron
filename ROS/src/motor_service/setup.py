@@ -29,6 +29,7 @@ setup(
         'motor_controller_joystick = motor_service.motor_controller_joystick:main',
         'rumble_test = motor_service.rumble_test:main',
         'failsafe_node = motor_service.failsafe_node:main',
+        'laser_scan_fusion_node = motor_service.laser_scan_fusion_node:main',
     
         ],
     },

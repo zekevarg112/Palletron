@@ -12,9 +12,9 @@ def generate_launch_description():
                 {'handshake_response_byte': 0xA6},
                 {'timeout': 2.0}, #handshake timeout
                 {'publish_rate': 40.0},  # Set your desired publish rate here
-                {'right_motor_topic': 'right_motor_rpm'},  # Custom topic for right motor
-                {'left_motor_topic': 'left_motor_rpm'},  # Custom topic for left motor
-                {'encoder_angle_topic': 'encoder_angle_deg'},  # Custom topic for encoder angle
+                {'right_motor_topic': 'right_motor_velocity'},  # Custom topic for right motor
+                {'left_motor_topic': 'left_motor_velocity'},  # Custom topic for left motor
+                {'encoder_angle_topic': 'encoder_angle'},  # Custom topic for encoder angle
             ]
     ),
     Node(

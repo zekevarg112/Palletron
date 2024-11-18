@@ -1,0 +1,19 @@
+[0.521s] Invoking command in '/home/viktor/Desktop/Palletron/build/actuator_control': PYTHONPATH=/home/viktor/Desktop/Palletron/build/actuator_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/viktor/Desktop/Palletron/install/actuator_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/viktor/Desktop/Palletron/build/actuator_control/build --no-deps symlink_data
+[0.726s] running develop
+[0.726s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[0.726s]   warnings.warn(
+[0.857s] running egg_info
+[0.857s] writing actuator_control.egg-info/PKG-INFO
+[0.857s] writing dependency_links to actuator_control.egg-info/dependency_links.txt
+[0.857s] writing entry points to actuator_control.egg-info/entry_points.txt
+[0.857s] writing requirements to actuator_control.egg-info/requires.txt
+[0.857s] writing top-level names to actuator_control.egg-info/top_level.txt
+[0.859s] reading manifest file 'actuator_control.egg-info/SOURCES.txt'
+[0.859s] writing manifest file 'actuator_control.egg-info/SOURCES.txt'
+[0.860s] running build_ext
+[0.860s] Creating /home/viktor/Desktop/Palletron/install/actuator_control/lib/python3.10/site-packages/actuator-control.egg-link (link to .)
+[0.861s] Installing actuator_node script to /home/viktor/Desktop/Palletron/install/actuator_control/lib/actuator_control
+[0.861s] 
+[0.861s] Installed /home/viktor/Desktop/Palletron/build/actuator_control
+[0.861s] running symlink_data
+[0.883s] Invoked command in '/home/viktor/Desktop/Palletron/build/actuator_control' returned '0': PYTHONPATH=/home/viktor/Desktop/Palletron/build/actuator_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/viktor/Desktop/Palletron/install/actuator_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/viktor/Desktop/Palletron/build/actuator_control/build --no-deps symlink_data

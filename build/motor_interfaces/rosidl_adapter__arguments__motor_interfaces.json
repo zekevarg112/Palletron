@@ -1,0 +1,7 @@
+{
+  "package_name": "motor_interfaces",
+  "non_idl_tuples": [
+    "/home/viktor/Desktop/Palletron/ROS/src/motor_interfaces:srv/SetMotorRpm.srv",
+    "/home/viktor/Desktop/Palletron/ROS/src/motor_interfaces:msg/MotorCommand.msg"
+  ]
+}

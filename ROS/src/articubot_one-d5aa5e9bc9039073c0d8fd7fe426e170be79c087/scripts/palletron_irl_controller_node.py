@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from std_msgs.msg import Float32
+from std_msgs.msg import Bool
 from motor_interfaces.srv import SetMotorRpm
 import math
 
@@ -23,15 +24,15 @@ class PalletJackControllerNode(Node):
         # Steering control parameters
         self.steering_kp = 0.5           # Proportional gain (tune as needed)
         
-        # Create a client for the set_motor_rpm service
-        self.client = self.create_client(SetMotorRpm, 'set_motor_rpm')
-        while not self.client.wait_for_service(timeout_sec=10.0):
-            self.get_logger().info('Waiting for set_motor_rpm service...')
-        self.get_logger().info('Started.')
+        
 
         # Steering angle and velocity
         self.steering_angle = 0.0
         self.cmd_vel = Twist()  # Initialize with zero velocities
+
+        # ROS publisher for ros_controller_check
+        self.ros_controller_check_pub = self.create_publisher(Bool, 'ros_controller_check', 10)
+        self.ros_controller_check_timer = self.create_timer(0.05, self.publish_ros_controller_check)
 
         # Subscribe to the angle sensor
         self.encoder_angle_sub = self.create_subscription(
@@ -58,12 +59,29 @@ class PalletJackControllerNode(Node):
         self.cmd_vel_sub = self.create_subscription(
             Twist, '/cmd_vel', self.cmd_vel_callback, 10
         )
+        # Create a client for the set_motor_rpm service
+        self.client = self.create_client(SetMotorRpm, 'set_motor_rpm')
+        while not self.client.wait_for_service(timeout_sec=2.0):
+            self.publish_vesc_check()
+            self.get_logger().info('Waiting for set_motor_rpm service...')
+            #self.publish_vesc_check
+        self.get_logger().info('Started.')
 
         # Timer to run the control loop at a fixed frequency (e.g., 40 Hz)
         self.control_timer = self.create_timer(0.025, self.control_loop)  # 0.025s = 40 Hz
+        
 
         self.get_logger().info('PalletJackControllerNode has started.')
-
+    def publish_ros_controller_check(self):
+        msg = Bool()
+        msg.data = True
+        self.ros_controller_check_pub.publish(msg)
+        self.get_logger().info("Published ros_controller_check: True")
+    def publish_vesc_check(self):
+        msg = Bool()
+        msg.data = False
+        self.ros_controller_check_pub.publish(msg)
+        self.get_logger().info("Published vesc_check: False")
     
     def right_motor_callback(self, msg):
         if abs(self.last_right_wheel_rpm-msg.data)>150:

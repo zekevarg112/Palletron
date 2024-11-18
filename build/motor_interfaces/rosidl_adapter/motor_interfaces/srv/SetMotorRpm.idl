@@ -1,0 +1,16 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from motor_interfaces/srv/SetMotorRpm.srv
+// generated code does not contain a copyright notice
+
+#include "motor_interfaces/msg/MotorCommand.idl"
+
+module motor_interfaces {
+  module srv {
+    struct SetMotorRpm_Request {
+      motor_interfaces::msg::MotorCommand command;
+    };
+    struct SetMotorRpm_Response {
+      boolean success;
+    };
+  };
+};

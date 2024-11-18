@@ -1,0 +1,1 @@
+/home/viktor/Desktop/Palletron/build/motor_service/launch/raspberry_launch.py

@@ -1,0 +1,35 @@
+[0.481s] Invoking command in '/home/viktor/Desktop/Palletron/build/motor_service': AMENT_PREFIX_PATH=/home/viktor/Desktop/Palletron/install/motor_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/viktor/Desktop/Palletron/install/motor_interfaces LD_LIBRARY_PATH=/home/viktor/Desktop/Palletron/install/motor_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/viktor/Desktop/Palletron/build/motor_service/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/viktor/Desktop/Palletron/install/motor_service/lib/python3.10/site-packages:/home/viktor/Desktop/Palletron/install/motor_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/viktor/Desktop/Palletron/build/motor_service/build --no-deps symlink_data
+[0.676s] running develop
+[0.677s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[0.677s]   warnings.warn(
+[0.807s] running egg_info
+[0.807s] creating motor_service.egg-info
+[0.808s] writing motor_service.egg-info/PKG-INFO
+[0.808s] writing dependency_links to motor_service.egg-info/dependency_links.txt
+[0.808s] writing entry points to motor_service.egg-info/entry_points.txt
+[0.808s] writing requirements to motor_service.egg-info/requires.txt
+[0.808s] writing top-level names to motor_service.egg-info/top_level.txt
+[0.808s] writing manifest file 'motor_service.egg-info/SOURCES.txt'
+[0.809s] reading manifest file 'motor_service.egg-info/SOURCES.txt'
+[0.810s] writing manifest file 'motor_service.egg-info/SOURCES.txt'
+[0.811s] running build_ext
+[0.811s] Creating /home/viktor/Desktop/Palletron/install/motor_service/lib/python3.10/site-packages/motor-service.egg-link (link to .)
+[0.812s] Installing failsafe_node script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+[0.812s] Installing motor_client script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+[0.812s] Installing motor_controller_joystick script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+[0.812s] Installing motor_controller_listener script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+[0.812s] Installing motor_controller_service script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+[0.812s] Installing rumble_test script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+[0.812s] 
+[0.812s] Installed /home/viktor/Desktop/Palletron/build/motor_service
+[0.812s] running symlink_data
+[0.813s] creating /home/viktor/Desktop/Palletron/install/motor_service/share/ament_index
+[0.813s] creating /home/viktor/Desktop/Palletron/install/motor_service/share/ament_index/resource_index
+[0.813s] creating /home/viktor/Desktop/Palletron/install/motor_service/share/ament_index/resource_index/packages
+[0.813s] symbolically linking /home/viktor/Desktop/Palletron/build/motor_service/resource/motor_service -> /home/viktor/Desktop/Palletron/install/motor_service/share/ament_index/resource_index/packages
+[0.813s] symbolically linking /home/viktor/Desktop/Palletron/build/motor_service/package.xml -> /home/viktor/Desktop/Palletron/install/motor_service/share/motor_service
+[0.813s] creating /home/viktor/Desktop/Palletron/install/motor_service/share/motor_service/launch
+[0.813s] symbolically linking /home/viktor/Desktop/Palletron/build/motor_service/launch/motor_cmd_vel_launch.py -> /home/viktor/Desktop/Palletron/install/motor_service/share/motor_service/launch
+[0.813s] symbolically linking /home/viktor/Desktop/Palletron/build/motor_service/launch/raspberry_launch.py -> /home/viktor/Desktop/Palletron/install/motor_service/share/motor_service/launch
+[0.813s] symbolically linking /home/viktor/Desktop/Palletron/build/motor_service/launch/motor_joystick_launch.py -> /home/viktor/Desktop/Palletron/install/motor_service/share/motor_service/launch
+[0.841s] Invoked command in '/home/viktor/Desktop/Palletron/build/motor_service' returned '0': AMENT_PREFIX_PATH=/home/viktor/Desktop/Palletron/install/motor_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/viktor/Desktop/Palletron/install/motor_interfaces LD_LIBRARY_PATH=/home/viktor/Desktop/Palletron/install/motor_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/viktor/Desktop/Palletron/build/motor_service/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/viktor/Desktop/Palletron/install/motor_service/lib/python3.10/site-packages:/home/viktor/Desktop/Palletron/install/motor_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/viktor/Desktop/Palletron/build/motor_service/build --no-deps symlink_data

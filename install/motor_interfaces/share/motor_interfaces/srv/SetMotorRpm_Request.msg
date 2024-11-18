@@ -1,0 +1,1 @@
+/home/viktor/Desktop/Palletron/build/motor_interfaces/rosidl_cmake/srv/SetMotorRpm_Request.msg

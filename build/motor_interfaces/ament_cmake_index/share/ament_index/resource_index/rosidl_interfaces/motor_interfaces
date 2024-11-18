@@ -1,0 +1,6 @@
+msg/MotorCommand.idl
+msg/MotorCommand.msg
+srv/SetMotorRpm.idl
+srv/SetMotorRpm.srv
+srv/SetMotorRpm_Request.msg
+srv/SetMotorRpm_Response.msg

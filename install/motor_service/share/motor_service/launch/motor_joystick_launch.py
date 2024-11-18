@@ -1,0 +1,1 @@
+/home/viktor/Desktop/Palletron/build/motor_service/launch/motor_joystick_launch.py

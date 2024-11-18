@@ -23,5 +23,12 @@ def generate_launch_description():
         name='linear_actuator_controller_irl_node',
         output='screen',
         parameters=[{'use_sim_time': False}]
+    ),
+    Node(
+        package='motor_service',
+        executable='failsafe_node.py',
+        name='failsafe_node',
+        output='screen',
+        parameters=[{'use_sim_time': False}]
     )
    ])

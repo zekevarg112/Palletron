@@ -1,0 +1,20 @@
+running develop
+running egg_info
+writing motor_service.egg-info/PKG-INFO
+writing dependency_links to motor_service.egg-info/dependency_links.txt
+writing entry points to motor_service.egg-info/entry_points.txt
+writing requirements to motor_service.egg-info/requires.txt
+writing top-level names to motor_service.egg-info/top_level.txt
+reading manifest file 'motor_service.egg-info/SOURCES.txt'
+writing manifest file 'motor_service.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/viktor/Desktop/Palletron/install/motor_service/lib/python3.10/site-packages/motor-service.egg-link (link to .)
+Installing failsafe_node script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+Installing motor_client script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+Installing motor_controller_joystick script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+Installing motor_controller_listener script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+Installing motor_controller_service script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+Installing rumble_test script to /home/viktor/Desktop/Palletron/install/motor_service/lib/motor_service
+
+Installed /home/viktor/Desktop/Palletron/build/motor_service
+running symlink_data

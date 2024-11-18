@@ -27,7 +27,8 @@ setup(
         'motor_client = motor_service.motor_controller_client:main',
         'motor_controller_listener = motor_service.motor_controller_listener:main',
         'motor_controller_joystick = motor_service.motor_controller_joystick:main',
-        'rumble_test = motor_service.rumble_test:main'
+        'rumble_test = motor_service.rumble_test:main',
+        'failsafe_node = motor_service.failsafe_node:main',
     
         ],
     },

@@ -17,18 +17,18 @@ def generate_launch_description():
                 {'encoder_angle_topic': 'encoder_angle'},  # Custom topic for encoder angle
             ]
     ),
-    Node(
-        package='articubot_one',
-        executable='linear_actuator_controller_irl_node',
-        name='linear_actuator_controller_irl_node',
-        output='screen',
-        parameters=[{'use_sim_time': False}]
-    ),
-    Node(
-        package='motor_service',
-        executable='failsafe_node',
-        name='failsafe_node',
-        output='screen',
-        parameters=[{'use_sim_time': False}]
-    )
+#    Node(
+#        package='articubot_one',
+#        executable='linear_actuator_controller_irl_node',
+#        name='linear_actuator_controller_irl_node',
+#        output='screen',
+#        parameters=[{'use_sim_time': False}]
+#    ),
+#    Node(
+#        package='motor_service',
+#        executable='failsafe_node',
+#        name='failsafe_node',
+#        output='screen',
+#        parameters=[{'use_sim_time': False}]
+#    )
    ])

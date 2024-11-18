@@ -1,1 +1,0 @@
-/home/viktor/Desktop/Palletron/ROS/src/actuator_control/setup.py

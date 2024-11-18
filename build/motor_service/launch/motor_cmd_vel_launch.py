@@ -1,1 +1,0 @@
-/home/viktor/Desktop/Palletron/ROS/src/motor_service/launch/motor_cmd_vel_launch.py

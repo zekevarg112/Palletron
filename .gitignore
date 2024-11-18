@@ -9,6 +9,10 @@
 
 # Ros stuff
 
+log/
+install/
+build/
+devel/
 ROS/devel/
 ROS/logs/
 ROS/build/

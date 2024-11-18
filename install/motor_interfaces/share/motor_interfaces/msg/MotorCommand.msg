@@ -1,1 +1,0 @@
-/home/viktor/Desktop/Palletron/ROS/src/motor_interfaces/msg/MotorCommand.msg

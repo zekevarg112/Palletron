@@ -1,1 +1,0 @@
-/home/viktor/Desktop/Palletron/build/motor_interfaces/rosidl_generator_py/motor_interfaces/_motor_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c

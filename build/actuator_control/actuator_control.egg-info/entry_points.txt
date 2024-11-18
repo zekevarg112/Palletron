@@ -1,3 +1,0 @@
-[console_scripts]
-actuator_node = actuator_control.actuator_node:main
-

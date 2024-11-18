@@ -31,7 +31,7 @@ MOTORS = {
 }
 
 # Function to automatically detect the correct serial port based on a handshake
-def auto_detect_serial_port(baud_rate=115200, handshake_response_byte=0xA6, timeout=2):
+def auto_detect_serial_port(baud_rate=460800, handshake_response_byte=0xA6, timeout=2):
     # Scan possible serial ports
     possible_ports = glob.glob('/dev/ttyACM*') + glob.glob('/dev/ttyUSB*')
 

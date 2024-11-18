@@ -16,7 +16,7 @@ void debug_message(const char* prefix, const char* format, ...) {
 }
 
 void debug_init(){
-    Serial.begin(115200);
+    Serial.begin(SERIAL_SPEED);
     serial_mutex = xSemaphoreCreateBinary();
     xSemaphoreGive(serial_mutex);
 }

@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include <cstdarg>
 #include <cstring>
+#include "../config.h"
 
 void debug_message(const char* prefix, const char* format, ...);
 

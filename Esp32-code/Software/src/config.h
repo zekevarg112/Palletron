@@ -12,6 +12,8 @@
 //#define VESC_DEBUG
 //#define SERIAL_PARSER_DEBUG
 
+#define SERIAL_SPEED 460800
+
 #define SDA_PIN 25
 #define SCL_PIN 33
 

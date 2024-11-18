@@ -19,14 +19,14 @@ def generate_launch_description():
     ),
     Node(
         package='articubot_one',
-        executable='linear_actuator_controller_irl_node.py',
+        executable='linear_actuator_controller_irl_node',
         name='linear_actuator_controller_irl_node',
         output='screen',
         parameters=[{'use_sim_time': False}]
     ),
     Node(
         package='motor_service',
-        executable='failsafe_node.py',
+        executable='failsafe_node',
         name='failsafe_node',
         output='screen',
         parameters=[{'use_sim_time': False}]

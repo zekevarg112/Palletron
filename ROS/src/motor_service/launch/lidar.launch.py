@@ -65,7 +65,7 @@ def generate_launch_description():
 
     fusion_node = Node(
         package='motor_service',
-        executable='laser_scan_fusion_node.py',
+        executable='laser_scan_fusion_node',
         name='laser_scan_fusion_node',
         output='screen'
     )

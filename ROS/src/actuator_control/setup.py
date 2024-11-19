@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'actuator_node = actuator_control.actuator_node:main',
+            'linear_actuator_controller_irl_node = actuator_control.linear_actuator_controller_irl_node:main',
         ],
     },
 )

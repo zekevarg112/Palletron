@@ -163,7 +163,7 @@ controller_server:
       rotate_to_heading_min_angle: 1.0
       max_angular_accel: 6.2
       max_robot_pose_search_dist: 10.0
-      #interpolate_curvature_after_goal: true
+      interpolate_curvature_after_goal: true
 
     # DWB parameters
 #    FollowPath:

@@ -1,5 +1,7 @@
 #include <Arduino.h>
 
+// changes made using GPT
+ 
 // Define the pins
 const int pin1 = 8;           // Set pin 1
 const int pin2 = 9;           // Set pin 2

@@ -17,6 +17,11 @@ def generate_launch_description():
                 {'encoder_angle_topic': 'encoder_angle'},  # Custom topic for encoder angle
             ]
     ),
+    Node(
+       package="actuator_control",
+       executable="actuator_node",
+       name="actuator_node"
+    )
 #    Node(
 #        package='articubot_one',
 #        executable='linear_actuator_controller_irl_node',

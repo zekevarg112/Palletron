@@ -43,7 +43,7 @@ class PalletJackOdometryNode(Node):
 
         self.get_logger().info('PalletJackOdometryNode has started.')
         # Timer to run the control loop at a fixed frequency (e.g., 40 Hz)
-        self.control_timer = self.create_timer(0.025, self.update_odometry)  # 0.025s = 40 Hz
+        self.control_timer = self.create_timer(0.01, self.update_odometry)  # 0.025s = 40 Hz
 
     def joint_state_callback(self, msg):
         # Map joint names to indices

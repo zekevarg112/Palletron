@@ -39,7 +39,7 @@ class PalletJackControllerNode(Node):
 
         self.get_logger().info('PalletJackControllerNode has started.')
         # Timer to run the control loop at a fixed frequency (e.g., 40 Hz)
-        self.control_timer = self.create_timer(0.025, self.control_loop)  # 0.025s = 40 Hz
+        self.control_timer = self.create_timer(0.01, self.control_loop)  # 0.025s = 40 Hz
 
     def cmd_vel_callback(self, msg):
         # Extract linear and angular velocities from cmd_vel
@@ -49,7 +49,7 @@ class PalletJackControllerNode(Node):
 
     
     def control_loop(self):# Compute desired steering angle
-        delta_desired = math.atan2(self.wheelbase * self.omega, self.v) if abs(self.v) > 1e-4 else 0.0
+        delta_desired = math.atan2(self.wheelbase * self.omega, abs(self.v)) if abs(self.v) > 1e-4 else 0.0
 
         # Limit desired steering angle
         delta_desired = max(min(delta_desired, self.max_steering_angle), -self.max_steering_angle)

@@ -39,7 +39,7 @@ class ArduinoActuatorControl(Node):
 
     def listener_callback(self, msg):
         command = int(msg.data)  # Cast the float to an integer
-        if command in [1, 2]:  # Check if the integer command is 1 or 2
+        if command in [0, 1, 2]:  # Check if the integer command is 0, 1 or 2
             self.get_logger().info(f'Sending command to Arduino: {command}')
             self.arduino_serial.write(f'{command}\n'.encode())  # Send command as an integer string
         else:

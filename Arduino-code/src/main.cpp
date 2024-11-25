@@ -8,6 +8,10 @@ const int pin2 = 9;           // Set pin 2
 const int extendedPin = 2;    // Pin to read the actuator's extended signal (input)
 const int retractedPin = 3;   // Pin to read the actuator's retracted signal (input)
 
+const int responseExtended = 1;
+const int responeRetracted = 2;
+const int responseStopped = 0;
+
 // Define states
 enum ActuatorState { IDLE, EXTENDING, RETRACTING } state;
 
@@ -26,14 +30,13 @@ void setup() {
   digitalWrite(pin2, LOW);
 
   state = IDLE; // Set initial state to IDLE
-  Serial.println("Actuator control ready.");
 }
 
 void stopActuator() {
   digitalWrite(pin1, LOW);
   digitalWrite(pin2, LOW);
   state = IDLE;
-  Serial.println("Actuator stopped.");
+  Serial.println(responseStopped);
 }
 
 void extendActuator() {
@@ -43,7 +46,7 @@ void extendActuator() {
   } else {
     // Already fully extended
     stopActuator();
-    Serial.println("Actuator already fully extended.");
+    Serial.println(responseExtended);
   }
 }
 
@@ -54,7 +57,7 @@ void retractActuator() {
   } else {
     // Already fully retracted
     stopActuator();
-    Serial.println("Actuator already fully retracted.");
+    Serial.println(responeRetracted);
   }
 }
 
@@ -66,21 +69,21 @@ void loop() {
     // If a command is received while in motion, stop the actuator
     if (state == EXTENDING || state == RETRACTING) {
       stopActuator();
-      Serial.println("New command received during motion. Stopping actuator.");
+      // Serial.println("New command received during motion. Stopping actuator.");
     }
 
     // Process new command
     if (command == 1) {
-      Serial.println("Command received: Extend");
+      // Serial.println("Command received: Extend");
       extendActuator();
     } else if (command == 2) {
-      Serial.println("Command received: Retract");
+      // Serial.println("Command received: Retract");
       retractActuator();
     } else if (command == 0) {
-      Serial.println("Command received: Stop");
+      // Serial.println("Command received: Stop");
       stopActuator();
     } else {
-      Serial.println("Invalid command received.");
+      // Serial.println("Invalid command received.");
     }
   }
 
@@ -89,13 +92,15 @@ void loop() {
     if (digitalRead(extendedPin) == HIGH) {
       // Reached fully extended position
       stopActuator();
-      Serial.println("Motion complete: Actuator fully extended.");
+      Serial.println(responseExtended);
+      // Serial.println("Motion complete: Actuator fully extended.");
     }
   } else if (state == RETRACTING) {
     if (digitalRead(retractedPin) == HIGH) {
       // Reached fully retracted position
       stopActuator();
-      Serial.println("Motion complete: Actuator fully retracted.");
+      Serial.println(responeRetracted);
+      // Serial.println("Motion complete: Actuator fully retracted.");
     }
   }
 }

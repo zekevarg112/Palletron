@@ -69,22 +69,25 @@ void loop() {
     // If a command is received while in motion, stop the actuator
     if (state == EXTENDING || state == RETRACTING) {
       stopActuator();
-      // Serial.println("New command received during motion. Stopping actuator.");
+      Serial.println("New command received during motion. Stopping actuator.");
+      
     }
-
+    else{
     // Process new command
     if (command == 1) {
-      // Serial.println("Command received: Extend");
+      Serial.println("Command received: Extend");
       extendActuator();
     } else if (command == 2) {
-      // Serial.println("Command received: Retract");
+      Serial.println("Command received: Retract");
       retractActuator();
     } else if (command == 0) {
-      // Serial.println("Command received: Stop");
+      Serial.println("Command received: Stop");
       stopActuator();
     } else {
-      // Serial.println("Invalid command received.");
-    }
+      Serial.println("Invalid command received.");
+    }}
+    Serial.read();
+
   }
 
   // Handle actuator motion based on state
@@ -93,14 +96,56 @@ void loop() {
       // Reached fully extended position
       stopActuator();
       Serial.println(responseExtended);
-      // Serial.println("Motion complete: Actuator fully extended.");
+      Serial.println("Motion complete: Actuator fully extended.");
     }
   } else if (state == RETRACTING) {
     if (digitalRead(retractedPin) == HIGH) {
       // Reached fully retracted position
       stopActuator();
       Serial.println(responeRetracted);
-      // Serial.println("Motion complete: Actuator fully retracted.");
+      Serial.println("Motion complete: Actuator fully retracted.");
     }
   }
+  
 }
+
+// #include <Arduino.h>
+
+// // Define the pins
+// const int pin1 = 8;  // Set pin 1
+// const int pin2 = 9;  // Set pin 2
+
+// void setup() {
+//   Serial.begin(115200); // Initialize serial communication at a baud rate of 9600
+//   // Initialize pins as outputs
+//   pinMode(pin1, OUTPUT);
+//   pinMode(pin2, OUTPUT);
+
+//   // Set initial states to LOW
+//   digitalWrite(pin1, LOW);
+//   digitalWrite(pin2, LOW);
+// }
+
+// void controlActuator(int command) {
+//   if (command == 1.0) {
+//     // Extend actuator
+//     // Make pin1 HIGH for 5 seconds, then LOW
+//   digitalWrite(pin1, HIGH);
+//   delay(7000);
+//   digitalWrite(pin1, LOW);
+//   } else if (command == 2.0) {
+//     // Retract actuator
+//     // Make pin2 HIGH for 5 seconds, then LOW
+//     digitalWrite(pin2, HIGH);
+//   delay(7000);
+//   digitalWrite(pin2, LOW);
+//   }
+// }
+
+// void loop() {
+//   if (Serial.available() > 0) {
+//     int command = Serial.parseInt(); // Read the command from ROS
+//     controlActuator(command);
+//   }
+  
+// }

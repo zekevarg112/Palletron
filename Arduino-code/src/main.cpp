@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
 // changes made using GPT
- 
+
 // Define the pins
 const int pin1 = 8;           // Set pin 1
 const int pin2 = 9;           // Set pin 2
@@ -12,7 +12,7 @@ const int retractedPin = 3;   // Pin to read the actuator's retracted signal (in
 enum ActuatorState { IDLE, EXTENDING, RETRACTING } state;
 
 void setup() {
-  Serial.begin(9600); // Initialize serial communication at a baud rate of 9600
+  Serial.begin(115200); // Initialize serial communication at a baud rate of 9600
   // Initialize pins as outputs
   pinMode(pin1, OUTPUT);
   pinMode(pin2, OUTPUT);

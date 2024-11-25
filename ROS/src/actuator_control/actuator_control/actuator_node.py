@@ -18,7 +18,7 @@ class ArduinoActuatorControl(Node):
         self.serial_port = self.find_arduino_serial_port()
         if self.serial_port is not None:
             try:
-                self.arduino_serial = serial.Serial(self.serial_port, 9600)
+                self.arduino_serial = serial.Serial(self.serial_port, 115200)
                 self.get_logger().info(f'Connected to Arduino Uno on port {self.serial_port}')
             except serial.SerialException as e:
                 self.get_logger().error(f'Failed to connect to Arduino Uno on port {self.serial_port}: {e}')

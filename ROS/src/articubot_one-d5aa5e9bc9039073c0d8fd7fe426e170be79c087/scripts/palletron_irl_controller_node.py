@@ -22,7 +22,7 @@ class PalletJackControllerNode(Node):
         self.last_left_wheel_rpm = 0
 
         # Steering control parameters
-        self.steering_kp = 0.5           # Proportional gain (tune as needed)
+        self.steering_kp = 0.35           # Proportional gain (tune as needed)
         
         
 

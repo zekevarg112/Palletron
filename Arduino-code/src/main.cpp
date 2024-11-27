@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <FastLED.h>
 
 // changes made using GPT
 
@@ -15,6 +16,20 @@ const int responseStopped = 0;
 // Define states
 enum ActuatorState { IDLE, EXTENDING, RETRACTING } state;
 
+// LED strip configuration
+#define NUM_LEDS 60           // Adjust based on your LED strip
+#define DATA_PIN 6            // Pin connected to LED strip
+CRGB leds[NUM_LEDS];
+
+// LED effect variables
+enum LEDMode { OFF, RUNNING_LIGHTS, RAINBOW_CYCLE } ledMode;
+unsigned long previousMillis = 0;  // Time tracking for non-blocking updates
+int ledPosition = 0;               // For Running Lights
+int rainbowStep = 0;               // For Rainbow Cycle
+int waveDelay = 50;                // Default delay for Running Lights
+int rainbowSpeed = 20;             // Default speed for Rainbow Cycle
+int brightness = 255;
+
 void setup() {
   Serial.begin(115200); // Initialize serial communication at a baud rate of 9600
   // Initialize pins as outputs
@@ -30,6 +45,13 @@ void setup() {
   digitalWrite(pin2, LOW);
 
   state = IDLE; // Set initial state to IDLE
+
+  // Initialize LED strip
+  FastLED.addLeds<WS2813, DATA_PIN, GRB>(leds, NUM_LEDS);
+  FastLED.clear();
+  FastLED.show();
+
+  ledMode = OFF; // Start with LEDs off
 }
 
 void stopActuator() {
@@ -61,13 +83,41 @@ void retractActuator() {
   }
 }
 
+
+// Non-blocking Running Lights effect
+void updateRunningLights(byte hue) {
+  if (millis() - previousMillis >= waveDelay) {
+    previousMillis = millis();
+    ledPosition++;
+    for (int i = 0; i < NUM_LEDS; i++) {
+      float waveBrightness = (sin((i + ledPosition)/6.0) * 127 + 128) / 255.0; // Sine wave for brightness modulation
+      leds[i] = CHSV(hue, 255, brightness*waveBrightness);            // HSV with dynamic brightness
+    
+    }
+    FastLED.show();
+  }
+}
+
+// Non-blocking Rainbow Cycle effect
+void updateRainbowCycle() {
+  if (millis() - previousMillis >= rainbowSpeed) {
+    previousMillis = millis();
+    for (int i = 0; i < NUM_LEDS; i++) {
+      byte hue = (i * 255 / NUM_LEDS + rainbowStep) % 255; // Spread hues across the strip
+      leds[i] = CHSV(hue, 255, brightness);               // Apply HSV with specified brightness
+    }
+    rainbowStep = (rainbowStep + 1) % (256 * 5);
+    FastLED.show();
+  }
+}
+
 void loop() {
   // Handle commands from Serial
   if (Serial.available() > 0) {
     int command = Serial.parseInt();
 
-    // If a command is received while in motion, stop the actuator
-    if (state == EXTENDING || state == RETRACTING) {
+    // If a movement command is received while in motion, stop the actuator
+    if ((state == EXTENDING || state == RETRACTING) && (command == 0 || command == 1 || command == 3)) {
       stopActuator();
       Serial.println("New command received during motion. Stopping actuator.");
       
@@ -83,6 +133,17 @@ void loop() {
     } else if (command == 0) {
       Serial.println("Command received: Stop");
       stopActuator();
+    } else if (command == 10) {
+      Serial.println("Command received: Turn off LEDs");
+      ledMode = OFF;
+      FastLED.clear();
+      FastLED.show();
+    } else if (command == 11) {
+      Serial.println("Command received: Running Lights");
+      ledMode = RUNNING_LIGHTS;
+    } else if (command == 12) {
+      Serial.println("Command received: Rainbow Cycle");
+      ledMode = RAINBOW_CYCLE;
     } else {
       Serial.println("Invalid command received.");
     }}
@@ -107,45 +168,12 @@ void loop() {
     }
   }
   
+  // Handle LED effects
+  if (ledMode == RUNNING_LIGHTS) {
+    updateRunningLights(HUE_ORANGE);
+  } else if (ledMode == RAINBOW_CYCLE) {
+    updateRainbowCycle();
+  }
+
 }
 
-// #include <Arduino.h>
-
-// // Define the pins
-// const int pin1 = 8;  // Set pin 1
-// const int pin2 = 9;  // Set pin 2
-
-// void setup() {
-//   Serial.begin(115200); // Initialize serial communication at a baud rate of 9600
-//   // Initialize pins as outputs
-//   pinMode(pin1, OUTPUT);
-//   pinMode(pin2, OUTPUT);
-
-//   // Set initial states to LOW
-//   digitalWrite(pin1, LOW);
-//   digitalWrite(pin2, LOW);
-// }
-
-// void controlActuator(int command) {
-//   if (command == 1.0) {
-//     // Extend actuator
-//     // Make pin1 HIGH for 5 seconds, then LOW
-//   digitalWrite(pin1, HIGH);
-//   delay(7000);
-//   digitalWrite(pin1, LOW);
-//   } else if (command == 2.0) {
-//     // Retract actuator
-//     // Make pin2 HIGH for 5 seconds, then LOW
-//     digitalWrite(pin2, HIGH);
-//   delay(7000);
-//   digitalWrite(pin2, LOW);
-//   }
-// }
-
-// void loop() {
-//   if (Serial.available() > 0) {
-//     int command = Serial.parseInt(); // Read the command from ROS
-//     controlActuator(command);
-//   }
-  
-// }

@@ -15,6 +15,12 @@ class ArduinoActuatorControl(Node):
             self.listener_callback,
             10
         )
+        self.subscription_led = self.create_subscription(
+            Float32,  # Subscribe to Float32 messages
+            '/led_command',
+            self.listener_callback_led,
+            10
+        )
         self.status_publisher = self.create_publisher(
             String,  # Publish actuator status as a String
             '/actuator_status',
@@ -49,6 +55,14 @@ class ArduinoActuatorControl(Node):
         command = int(msg.data)  # Cast the float to an integer
         if command in [0, 1, 2]:  # Valid commands: 0 (stop), 1 (extend), 2 (retract)
             self.get_logger().info(f'Sending command to Arduino: {command}')
+            self.arduino_serial.write(f'{command}\n'.encode())  # Send command to Arduino
+        else:
+            self.get_logger().warn(f'Invalid command received: {msg.data}')
+            
+    def listener_callback_led(self, msg):
+        command = int(msg.data)  # Cast the float to an integer
+        if command in [10, 11, 12, 13]:  # Valid commands: 10 (stop), 11 (running), 12 (rainbow), 13 (solid red)
+            self.get_logger().info(f'Sending led command to Arduino: {command}')
             self.arduino_serial.write(f'{command}\n'.encode())  # Send command to Arduino
         else:
             self.get_logger().warn(f'Invalid command received: {msg.data}')

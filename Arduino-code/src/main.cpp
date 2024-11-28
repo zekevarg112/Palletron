@@ -17,12 +17,15 @@ const int responseStopped = 0;
 enum ActuatorState { IDLE, EXTENDING, RETRACTING } state;
 
 // LED strip configuration
-#define NUM_LEDS 60           // Adjust based on your LED strip
-#define DATA_PIN 6            // Pin connected to LED strip
-CRGB leds[NUM_LEDS];
+#define NUM_LEDS 89           // Adjust based on your LED strip
+#define DATA_PIN_L 6            // Pin connected to LED strip
+#define DATA_PIN_R 7            // Pin connected to LED strip
+
+CRGB leds_L[NUM_LEDS];
+CRGB leds_R[NUM_LEDS];
 
 // LED effect variables
-enum LEDMode { OFF, RUNNING_LIGHTS, RAINBOW_CYCLE } ledMode;
+enum LEDMode { OFF, RUNNING_LIGHTS, RAINBOW_CYCLE, SOLID_RED } ledMode;
 unsigned long previousMillis = 0;  // Time tracking for non-blocking updates
 int ledPosition = 0;               // For Running Lights
 int rainbowStep = 0;               // For Rainbow Cycle
@@ -47,7 +50,9 @@ void setup() {
   state = IDLE; // Set initial state to IDLE
 
   // Initialize LED strip
-  FastLED.addLeds<WS2813, DATA_PIN, GRB>(leds, NUM_LEDS);
+  FastLED.addLeds<WS2813, DATA_PIN_L, GRB>(leds_L, NUM_LEDS);
+  FastLED.addLeds<WS2813, DATA_PIN_R, GRB>(leds_R, NUM_LEDS);
+
   FastLED.clear();
   FastLED.show();
 
@@ -85,7 +90,7 @@ void retractActuator() {
 
 
 // Non-blocking Running Lights effect
-void updateRunningLights(byte hue) {
+void updateRunningLights(CRGB *leds, byte hue) {
   if (millis() - previousMillis >= waveDelay) {
     previousMillis = millis();
     ledPosition++;
@@ -99,7 +104,7 @@ void updateRunningLights(byte hue) {
 }
 
 // Non-blocking Rainbow Cycle effect
-void updateRainbowCycle() {
+void updateRainbowCycle(CRGB *leds) {
   if (millis() - previousMillis >= rainbowSpeed) {
     previousMillis = millis();
     for (int i = 0; i < NUM_LEDS; i++) {
@@ -144,7 +149,12 @@ void loop() {
     } else if (command == 12) {
       Serial.println("Command received: Rainbow Cycle");
       ledMode = RAINBOW_CYCLE;
-    } else {
+    } else if (command == 13) {
+      Serial.println("Command received: Solid red");
+      ledMode = SOLID_RED;
+      fill_solid(leds_L, NUM_LEDS, HUE_RED);
+      fill_solid(leds_R, NUM_LEDS, HUE_RED);
+    }else {
       Serial.println("Invalid command received.");
     }}
     Serial.read();
@@ -170,9 +180,13 @@ void loop() {
   
   // Handle LED effects
   if (ledMode == RUNNING_LIGHTS) {
-    updateRunningLights(HUE_ORANGE);
+    updateRunningLights(leds_L, HUE_ORANGE);
+    updateRunningLights(leds_R, HUE_ORANGE);
+
   } else if (ledMode == RAINBOW_CYCLE) {
-    updateRainbowCycle();
+    updateRainbowCycle(leds_L);
+    updateRainbowCycle(leds_R);
+
   }
 
 }

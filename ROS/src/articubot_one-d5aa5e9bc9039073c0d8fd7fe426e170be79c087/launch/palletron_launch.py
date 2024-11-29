@@ -41,13 +41,13 @@ def generate_launch_description():
                         
      # Include RViz2 node with 'use_sim_time' set to true
     rviz_config_file = os.path.join(
-        get_package_share_directory(package_name), 'rviz', 'robot.rviz'
+        get_package_share_directory(package_name), 'config', 'palletron_irl.rviz'
     )
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
         name='rviz2',
-        #arguments=['-d', rviz_config_file],
+        arguments=['-d', rviz_config_file],
         parameters=[{'use_sim_time': False}],
         output='screen'
     )
@@ -100,7 +100,7 @@ def generate_launch_description():
         rviz_node,
         joint_state_publisher_node, 
         odometry_node,
-        slam_toolbox,
+        #slam_toolbox,
         #delayed_odom_node,
-        #delayed_slam_node
+        delayed_slam_node
     ])

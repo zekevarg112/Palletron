@@ -90,26 +90,27 @@ void retractActuator() {
 
 
 // Non-blocking Running Lights effect
-void updateRunningLights(CRGB *leds, byte hue) {
+void updateRunningLights(byte hue) {
   if (millis() - previousMillis >= waveDelay) {
     previousMillis = millis();
     ledPosition++;
     for (int i = 0; i < NUM_LEDS; i++) {
       float waveBrightness = (sin((i + ledPosition)/6.0) * 127 + 128) / 255.0; // Sine wave for brightness modulation
-      leds[i] = CHSV(hue, 255, brightness*waveBrightness);            // HSV with dynamic brightness
-    
+      leds_L[i] = CHSV(hue, 255, brightness*waveBrightness);            // HSV with dynamic brightness
+      leds_R[i] = CHSV(hue, 255, brightness*waveBrightness);
     }
     FastLED.show();
   }
 }
 
 // Non-blocking Rainbow Cycle effect
-void updateRainbowCycle(CRGB *leds) {
+void updateRainbowCycle() {
   if (millis() - previousMillis >= rainbowSpeed) {
     previousMillis = millis();
     for (int i = 0; i < NUM_LEDS; i++) {
       byte hue = (i * 255 / NUM_LEDS + rainbowStep) % 255; // Spread hues across the strip
-      leds[i] = CHSV(hue, 255, brightness);               // Apply HSV with specified brightness
+      leds_L[i] = CHSV(hue, 255, brightness);               // Apply HSV with specified brightness
+      leds_R[i] = CHSV(hue, 255, brightness);
     }
     rainbowStep = (rainbowStep + 1) % (256 * 5);
     FastLED.show();
@@ -122,7 +123,7 @@ void loop() {
     int command = Serial.parseInt();
 
     // If a movement command is received while in motion, stop the actuator
-    if ((state == EXTENDING || state == RETRACTING) && (command == 0 || command == 1 || command == 3)) {
+    if ((state == EXTENDING || state == RETRACTING) && (command == 0 || command == 1 || command == 2)) {
       stopActuator();
       Serial.println("New command received during motion. Stopping actuator.");
       
@@ -152,8 +153,9 @@ void loop() {
     } else if (command == 13) {
       Serial.println("Command received: Solid red");
       ledMode = SOLID_RED;
-      fill_solid(leds_L, NUM_LEDS, HUE_RED);
-      fill_solid(leds_R, NUM_LEDS, HUE_RED);
+      fill_solid(leds_L, NUM_LEDS, CHSV(HUE_RED, 255, brightness));
+      fill_solid(leds_R, NUM_LEDS, CHSV(HUE_RED, 255, brightness));
+      FastLED.show();
     }else {
       Serial.println("Invalid command received.");
     }}
@@ -180,12 +182,10 @@ void loop() {
   
   // Handle LED effects
   if (ledMode == RUNNING_LIGHTS) {
-    updateRunningLights(leds_L, HUE_ORANGE);
-    updateRunningLights(leds_R, HUE_ORANGE);
+    updateRunningLights(HUE_ORANGE);
 
   } else if (ledMode == RAINBOW_CYCLE) {
-    updateRainbowCycle(leds_L);
-    updateRainbowCycle(leds_R);
+    updateRainbowCycle();
 
   }
 

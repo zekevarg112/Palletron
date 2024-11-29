@@ -83,10 +83,19 @@ def generate_launch_description():
         parameters=[{'use_sim_time': False}]
     )
     
+    palletron_actuator_node= Node(
+        package='articubot_one',
+        executable='linear_actuator_controller_irl_node.py',
+        name='palletron_actuator_controller_node',
+        output='screen',
+        parameters=[{'use_sim_time': False}]
+    )
+    
 
     # Launch them all!
     return LaunchDescription([
         palletron_controller_node,
+        palletron_actuator_node,
         node_robot_state_publisher,
         rviz_node,
         joint_state_publisher_node, 

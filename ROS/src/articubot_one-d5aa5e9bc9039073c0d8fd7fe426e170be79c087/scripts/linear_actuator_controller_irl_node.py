@@ -18,10 +18,17 @@ class LinearActuatorControllerNode(Node):
         self.actuator_command_pub = self.create_publisher(
             Float32, '/actuator_command', 10
         )
+        
+        # Publisher to send commands to the actuator control topic
+        self.led_command_pub = self.create_publisher(
+            Float32, '/led_command', 10
+        )
 
         # Variables to store the previous state of A and B buttons
         self.a_pressed = False
         self.b_pressed = False
+        self.y_pressed = False
+        self.rgbstate = 10.0
 
         self.get_logger().info('Linear Actuator Controller Node has started.')
 
@@ -29,6 +36,7 @@ class LinearActuatorControllerNode(Node):
         # Current state of A and B buttons
         current_a_state = msg.buttons[0] == 1  # True if A button is pressed
         current_b_state = msg.buttons[1] == 1  # True if B button is pressed
+        current_y_state = msg.buttons[2] == 1
 
         # Check if A button (index 0) is pressed and wasn't already pressed
         if current_a_state and not self.a_pressed:
@@ -43,12 +51,23 @@ class LinearActuatorControllerNode(Node):
             self.publish_command(command)
             self.get_logger().info(f'Sending command to actuator: {command}')
             self.b_pressed = True  # Mark B as pressed
+        
+        # Check if Y button (index 2) is pressed and wasn't already pressed
+        elif current_y_state and not self.y_pressed:
+            self.rgbstate += 1.0
+            if(self.rgbstate > 13.0):
+                self.rgbstate = 10.0
+            self.publish_command_led(self.rgbstate)
+            self.get_logger().info(f'Sending command to led: {self.rgbstate}')
+            self.y_pressed = True  # Mark Y as pressed
 
         # Reset the press state when the button is released
         if not current_a_state:
             self.a_pressed = False
         if not current_b_state:
             self.b_pressed = False
+        if not current_y_state:
+            self.y_pressed = False
 
     def publish_command(self, command):
         # Create the Float32 message
@@ -57,6 +76,14 @@ class LinearActuatorControllerNode(Node):
 
         # Publish the command to the actuator control topic
         self.actuator_command_pub.publish(command_msg)
+        
+    def publish_command_led(self, command):
+        # Create the Float32 message
+        command_msg = Float32()
+        command_msg.data = command
+
+        # Publish the command to the actuator control topic
+        self.led_command_pub.publish(command_msg)
 
 def main(args=None):
     rclpy.init(args=args)

@@ -64,7 +64,7 @@ def generate_launch_description():
     )
 
     delayed_slam_node = TimerAction(
-        period=5.0,  # 5-second delay to allow for proper startup
+        period=10.0,  # 5-second delay to allow for proper startup
         actions=[slam_toolbox]
     )
     joint_state_publisher_node = Node(
@@ -100,7 +100,7 @@ def generate_launch_description():
         rviz_node,
         joint_state_publisher_node, 
         odometry_node,
-        #slam_toolbox,
+        slam_toolbox,
         #delayed_odom_node,
-        delayed_slam_node
+        #delayed_slam_node
     ])

@@ -140,7 +140,7 @@ controller_server:
     # DWB parameters
     FollowPath:
       plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
-      desired_linear_vel: 0.7
+      desired_linear_vel: 0.4
       lookahead_dist: 2.0 #TESTA ATT ÖKA, wiggling= öka, konvergerar för långsamt på pathen = minska
       min_lookahead_dist: 1.5
       max_lookahead_dist: 2.5

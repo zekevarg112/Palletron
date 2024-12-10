@@ -26,8 +26,8 @@ def generate_launch_description():
             output='screen',
             parameters=[{
                 'axis_linear.x': 1,
-                'scale_linear.x': 0.5,
-                'scale_linear_turbo.x': 0.8,
+                'scale_linear.x': 0.6,
+                'scale_linear_turbo.x': 1.0,
                 'use_sim_time': False,
                 'axis_angular.yaw': 3,
                 'scale_angular.yaw': 2.0,

@@ -49,7 +49,7 @@ def generate_launch_description():
             'range_max': 5.0,
             'scan_time': 0.02,
             'use_sim_time': False,
-            'min_height': -0.6,  # Adjusted height for the second instance
+            'min_height': -0.7,  # Adjusted height for the second instance
             'max_height': -0.3,
             'angle_min': -3.1415,
             'angle_max': 3.1415,
